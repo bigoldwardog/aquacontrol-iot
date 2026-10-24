@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema HMI Oscuro para AquaControl IoT -->
+    <style name="Theme.AquaControlIoT" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Fondos principal y de ventana -->
+        <item name="android:windowBackground">@color/scada_bg_dark</item>
+        <item name="android:colorBackground">@color/scada_bg_dark</item>
+
+        <!-- Colores Primario y Secundario -->
+        <item name="colorPrimary">@color/scada_cyan_primary</item>
+        <item name="colorOnPrimary">@color/scada_bg_dark</item>
+        <item name="colorSecondary">@color/scada_cyan_secondary</item>
+        <item name="colorOnSecondary">@color/scada_bg_dark</item>
+
+        <!-- Superficies y Tarjetas -->
+        <item name="colorSurface">@color/scada_surface</item>
+        <item name="colorOnSurface">@color/scada_text_primary</item>
+
+        <!-- Barras del Sistema -->
+        <item name="android:statusBarColor">@color/scada_bg_dark</item>
+        <item name="android:navigationBarColor">@color/scada_bg_dark</item>
+    </style>
+</resources>

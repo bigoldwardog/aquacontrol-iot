@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">AquaControl IoT</string>
+    <string name="welcome_title">AquaControl IoT</string>
+    <string name="welcome_subtitle">Monitoreo del Nivel de Agua y Control de Bomba</string>
+    <string name="welcome_description">Plataforma HMI/SCADA para la supervisión técnica en tiempo real, automatización de niveles de reservorio y control seguro de electrobombas.</string>
+
+    <string name="system_status_ready">SISTEMA LISTO | HMI V1.0</string>
+    <string name="system_status_subtitle">Estado: En espera de configuración y conexión</string>
+
+    <string name="modules_overview_title">Arquitectura de Paquetes</string>
+    <string name="module_auth_title">Autenticación (auth)</string>
+    <string name="module_auth_desc">Inicio de sesión y gestión de roles de operador.</string>
+    <string name="module_dashboard_title">Panel de Monitoreo (dashboard)</string>
+    <string name="module_dashboard_desc">Telemetría de nivel, estado de bomba y alarmas HMI.</string>
+    <string name="module_simulator_title">Simulador de Planta (simulator)</string>
+    <string name="module_simulator_desc">Pruebas dinámicas de sensores y actuador.</string>
+    <string name="module_data_title">Capa de Datos (data)</string>
+    <string name="module_data_desc">Acceso a datos locales e integración con Firebase.</string>
+
+    <string name="btn_access_system">Iniciar Sesión / Acceso</string>
+    <string name="btn_open_simulator">Modo Simulador</string>
+    <string name="toast_module_future">Módulo preparado en estructura de paquetes. Se integrará en la siguiente fase.</string>
+
+    <!-- Pantalla de Autenticación / Login -->
+    <string name="login_title">AUTENTICACIÓN DE OPERADOR</string>
+    <string name="login_subtitle">Acceso seguro al sistema de control AquaControl IoT</string>
+    <string name="label_email">Correo Electrónico</string>
+    <string name="hint_email">operador@aquacontrol.iot</string>
+    <string name="label_password">Contraseña</string>
+    <string name="hint_password">••••••••</string>
+    <string name="btn_login">Iniciar Sesión</string>
+    <string name="demo_mode_banner">⚠️ MODO DEMO: Se requiere google-services.json para Firebase Auth en producción.</string>
+    <string name="firebase_active_banner">✅ FIREBASE AUTH CONECTADO: Autenticación en tiempo real activa.</string>
+
+    <string name="error_email_required">El correo electrónico es obligatorio.</string>
+    <string name="error_email_invalid">Formato de correo no válido.</string>
+    <string name="error_password_required">La contraseña es obligatoria.</string>
+    <string name="error_password_short">La contraseña debe contener al menos 6 caracteres.</string>
+    <string name="auth_success_toast">Autenticación exitosa</string>
+    <string name="auth_failed_toast">Error en autenticación: %1$s</string>
+
+    <!-- Selección de Rol -->
+    <string name="role_title">SELECCIÓN DE ROL HMI</string>
+    <string name="role_subtitle">Elija la función que desempeñará este dispositivo en la red de monitoreo.</string>
+    <string name="role_logged_as">Operador Autenticado: %1$s</string>
+
+    <string name="role_monitor_title">Rol: Monitor de Planta</string>
+    <string name="role_monitor_desc">Destinado a la sala de control. Permite visualizar el nivel de agua en tiempo real y solicitar el encendido/apagado de la bomba.</string>
+    <string name="btn_select_monitor">Ingresar como Monitor</string>
+
+    <string name="role_controller_title">Rol: Controlador de Sensores</string>
+    <string name="role_controller_desc">Destinado al dispositivo de planta. Simula/gestiona los sensores de nivel de estanque y confirma el estado del actuador de la bomba.</string>
+    <string name="btn_select_controller">Ingresar como Controlador</string>
+    <string name="btn_logout">Cerrar Sesión</string>
+
+    <!-- Pantallas Provisionales -->
+    <string name="provisional_badge">MÓDULO PROVISIONAL - ETAPA 2</string>
+    <string name="monitor_title">PANEL MONITOR DE PLANTA</string>
+    <string name="monitor_subtitle">Visualización de Telemetría HMI</string>
+    <string name="monitor_info">Pantalla provisional del rol Monitor. La visualización en tiempo real del tanque de agua y el envío de órdenes a la bomba se integrarán en la Etapa 3 (Realtime Database).</string>
+
+    <string name="controller_title">PANEL CONTROLADOR / SIMULADOR</string>
+    <string name="controller_subtitle">Gestión de Sensores y Actuador</string>
+    <string name="controller_info">Pantalla provisional del rol Controlador. La lectura física/simulada de sensores y la respuesta de confirmación de la bomba se integrarán en la Etapa 3.</string>
+
+    <string name="btn_change_role">Cambiar de Rol</string>
+    <string name="footer_text">AquaControl IoT © 2025 • Arquitectura Nativa Android Views</string>
+</resources>
