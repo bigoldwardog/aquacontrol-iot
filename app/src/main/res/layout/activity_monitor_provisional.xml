@@ -13,39 +13,38 @@
         android:layout_height="wrap_content"
         android:padding="20dp">
 
-        <!-- Insignia de Rol Provisional -->
+        <!-- Insignia de Estado / Simulación -->
         <LinearLayout
             android:id="@+id/badgeMonitor"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_status_badge"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="14dp"
-            android:paddingVertical="6dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:contentDescription="@null"
                 android:src="@drawable/ic_status_indicator" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="sans-serif-medium"
-                android:letterSpacing="0.05"
-                android:text="@string/provisional_badge"
+                android:text="@string/sim_mode_badge"
                 android:textColor="@color/scada_status_ok"
-                android:textSize="12sp" />
+                android:textSize="11sp" />
         </LinearLayout>
 
-        <!-- Tarjeta de Información de Monitor -->
+        <!-- Tarjeta Gráfica del Tanque de Agua -->
         <LinearLayout
-            android:id="@+id/cardMonitorInfo"
+            android:id="@+id/cardTankView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -56,42 +55,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/badgeMonitor">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:fontFamily="sans-serif-black"
+                android:text="@string/monitor_title"
+                android:textColor="@color/scada_text_primary"
+                android:textSize="18sp" />
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_dashboard_monitor" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-black"
-                        android:text="@string/monitor_title"
-                        android:textColor="@color/scada_text_primary"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/monitor_subtitle"
-                        android:textColor="@color/scada_cyan_secondary"
-                        android:textSize="13sp" />
-                </LinearLayout>
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/monitor_subtitle"
+                android:textColor="@color/scada_cyan_secondary"
+                android:textSize="13sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -99,16 +77,269 @@
                 android:layout_marginVertical="16dp"
                 android:background="@color/scada_surface_stroke" />
 
-            <TextView
+            <!-- Representación Gráfica del Tanque -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lineSpacingExtra="4dp"
-                android:text="@string/monitor_info"
-                android:textColor="@color/scada_text_secondary"
-                android:textSize="13sp" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- Marco del Tanque con Nivel Dinámico -->
+                <FrameLayout
+                    android:id="@+id/frameTankOuter"
+                    android:layout_width="120dp"
+                    android:layout_height="180dp"
+                    android:background="@drawable/bg_scada_panel"
+                    android:padding="4dp">
+
+                    <!-- Barra de Llenado de Agua Dinámica -->
+                    <View
+                        android:id="@+id/viewWaterFill"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:layout_gravity="bottom"
+                        android:background="@color/scada_cyan_primary" />
+
+                    <!-- Porcentaje Sobrepuesto -->
+                    <TextView
+                        android:id="@+id/tvWaterLevelPercentage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="sans-serif-black"
+                        android:textColor="@color/scada_text_primary"
+                        android:textSize="20sp"
+                        tools:text="50.0 %" />
+                </FrameLayout>
+
+                <!-- Lecturas Numéricas SCADA -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvSensorDistance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/scada_text_primary"
+                        android:textSize="13sp"
+                        tools:text="Distancia del Sensor Ultrasónico: 110.0 cm" />
+
+                    <TextView
+                        android:id="@+id/tvCalibrationInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/scada_text_secondary"
+                        android:textSize="12sp"
+                        tools:text="Calibración: Vacío = 200.0 cm | Lleno = 20.0 cm" />
+
+                    <TextView
+                        android:id="@+id/tvLastUpdated"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/scada_text_muted"
+                        android:textSize="11sp"
+                        tools:text="Última actualización: 14:32:05" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
-        <!-- Botones de Gestión -->
+        <!-- Tarjeta de Estado Confirmado y Control de Bomba -->
+        <LinearLayout
+            android:id="@+id/cardPump"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_scada_panel"
+            android:orientation="vertical"
+            android:padding="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardTankView">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/label_pump_status"
+                android:textColor="@color/scada_text_secondary"
+                android:textSize="13sp" />
+
+            <!-- Indicador Led y Texto de Estado Confirmado -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imgPumpStatusLed"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_status_indicator"
+                    app:tint="@color/scada_text_muted" />
+
+                <TextView
+                    android:id="@+id/tvPumpStatusState"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="sans-serif-black"
+                    android:textColor="@color/scada_text_primary"
+                    android:textSize="15sp"
+                    tools:text="BOMBA APAGADA (CONFIRMADO)" />
+            </LinearLayout>
+
+            <!-- Estado de Solicitud Pendiente -->
+            <TextView
+                android:id="@+id/tvPendingOrderStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/scada_accent_amber"
+                android:textSize="12sp"
+                tools:text="Sin solicitudes pendientes" />
+
+            <!-- Resultado Reciente de la Orden -->
+            <TextView
+                android:id="@+id/tvLastOrderResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/scada_text_muted"
+                android:textSize="11sp"
+                tools:text="Resultado: Sin órdenes procesadas" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="16dp"
+                android:background="@color/scada_surface_stroke" />
+
+            <!-- Botones de Solicitud de Bomba -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRequestPumpOn"
+                    style="@style/Widget.Material3.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:text="@string/btn_request_on"
+                    android:textColor="@color/scada_bg_dark"
+                    android:textSize="12sp"
+                    app:backgroundTint="@color/scada_cyan_primary"
+                    app:cornerRadius="8dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRequestPumpOff"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:text="@string/btn_request_off"
+                    android:textColor="@color/scada_accent_amber"
+                    android:textSize="12sp"
+                    app:cornerRadius="8dp"
+                    app:strokeColor="@color/scada_accent_amber" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Tarjeta Ajustes de Calibración -->
+        <LinearLayout
+            android:id="@+id/cardCalibration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_scada_panel"
+            android:orientation="vertical"
+            android:padding="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardPump">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/title_calibration"
+                android:textColor="@color/scada_text_primary"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilEmptyDistance"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:hint="@string/label_empty_cm"
+                    app:boxStrokeColor="@color/scada_cyan_primary"
+                    app:hintTextColor="@color/scada_cyan_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEmptyDistance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/scada_text_primary"
+                        android:textSize="13sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFullDistance"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:hint="@string/label_full_cm"
+                    app:boxStrokeColor="@color/scada_cyan_primary"
+                    app:hintTextColor="@color/scada_cyan_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFullDistance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/scada_text_primary"
+                        android:textSize="13sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSaveCalibration"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/btn_save_calibration"
+                android:textColor="@color/scada_cyan_secondary"
+                android:textSize="13sp"
+                app:cornerRadius="8dp"
+                app:strokeColor="@color/scada_surface_stroke" />
+        </LinearLayout>
+
+        <!-- Botones de Navegación Inferior -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnChangeRoleMonitor"
             style="@style/Widget.Material3.Button"
@@ -122,7 +353,7 @@
             app:cornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardMonitorInfo" />
+            app:layout_constraintTop_toBottomOf="@id/cardCalibration" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogoutMonitor"

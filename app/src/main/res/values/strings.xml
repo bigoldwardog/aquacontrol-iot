@@ -53,15 +53,53 @@
     <string name="btn_select_controller">Ingresar como Controlador</string>
     <string name="btn_logout">Cerrar Sesión</string>
 
-    <!-- Pantallas Provisionales -->
-    <string name="provisional_badge">MÓDULO PROVISIONAL - ETAPA 2</string>
+    <!-- Panel Monitor HMI/SCADA (Etapa 3) -->
     <string name="monitor_title">PANEL MONITOR DE PLANTA</string>
-    <string name="monitor_subtitle">Visualización de Telemetría HMI</string>
-    <string name="monitor_info">Pantalla provisional del rol Monitor. La visualización en tiempo real del tanque de agua y el envío de órdenes a la bomba se integrarán en la Etapa 3 (Realtime Database).</string>
+    <string name="monitor_subtitle">Supervisión HMI / SCADA en Tiempo Real</string>
+    <string name="sim_mode_badge">⚠️ SIMULACIÓN LOCAL EN MEMORIA (Estado compartido en el proceso)</string>
 
-    <string name="controller_title">PANEL CONTROLADOR / SIMULADOR</string>
-    <string name="controller_subtitle">Gestión de Sensores y Actuador</string>
-    <string name="controller_info">Pantalla provisional del rol Controlador. La lectura física/simulada de sensores y la respuesta de confirmación de la bomba se integrarán en la Etapa 3.</string>
+    <string name="label_water_level">Nivel de Agua: %1$.1f %%</string>
+    <string name="label_sensor_distance">Distancia del Sensor Ultrasónico: %1$.1f cm</string>
+    <string name="label_calibration_info">Calibración: Vacío = %1$.1f cm | Lleno = %2$.1f cm</string>
+    <string name="label_last_update">Última actualización: %1$s</string>
+
+    <string name="label_pump_status">Estado Confirmado de Bomba:</string>
+    <string name="pump_state_on">BOMBA ENCENDIDA (CONFIRMADO)</string>
+    <string name="pump_state_off">BOMBA APAGADA (CONFIRMADO)</string>
+
+    <string name="label_pending_order">Orden Pendiente:</string>
+    <string name="order_none">Sin solicitudes pendientes</string>
+    <string name="order_pending_on">⚠️ Pendiente: ENCENDER BOMBA (Esperando aprobación del Controlador)</string>
+    <string name="order_pending_off">⚠️ Pendiente: APAGAR BOMBA (Esperando aprobación del Controlador)</string>
+
+    <string name="btn_request_on">Solicitar Encender Bomba</string>
+    <string name="btn_request_off">Solicitar Apagar Bomba</string>
+
+    <string name="title_calibration">Ajustes de Calibración del Tanque</string>
+    <string name="label_empty_cm">Distancia Tanque Vacío (0% cm)</string>
+    <string name="label_full_cm">Distancia Tanque Lleno (100% cm)</string>
+    <string name="btn_save_calibration">Guardar Calibración</string>
+    <string name="error_invalid_calibration">Calibración no válida: la distancia de vacío debe ser mayor a la de lleno y ambas positivas.</string>
+    <string name="calibration_updated_toast">Calibración del tanque actualizada correctamente.</string>
+
+    <!-- Simulador Controlador (Etapa 3) -->
+    <string name="controller_title">SIMULADOR DEL CONTROLADOR</string>
+    <string name="controller_subtitle">Gestión de Sensores y Confirmación de Actuador</string>
+    <string name="sim_sensor_badge">⚠️ SENSOR Y ACTUADOR SIMULADOS EN MEMORIA</string>
+
+    <string name="label_sim_switch">Simulación de Mediciones de Sensor Activa</string>
+    <string name="label_sim_distance">Ajuste de Distancia del Sensor (cm):</string>
+    <string name="label_sim_level_preview">Nivel Resultante: %1$.1f %% (%2$.1f cm)</string>
+
+    <string name="label_pending_requests_title">Gestión de Solicitudes del Monitor</string>
+    <string name="no_pending_orders">No hay solicitudes pendientes del Monitor.</string>
+
+    <string name="btn_accept_order">Aceptar Orden</string>
+    <string name="btn_reject_order">Rechazar Orden</string>
+    <string name="label_actuator_state">Estado Confirmado del Actuador:</string>
+
+    <string name="order_accepted_toast">Solicitud ACEPTADA. Estado de bomba actualizado.</string>
+    <string name="order_rejected_toast">Solicitud RECHAZADA. El estado de la bomba se mantiene sin cambios.</string>
 
     <string name="btn_change_role">Cambiar de Rol</string>
     <string name="footer_text">AquaControl IoT © 2025 • Arquitectura Nativa Android Views</string>

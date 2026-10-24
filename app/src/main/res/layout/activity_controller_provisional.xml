@@ -13,39 +13,38 @@
         android:layout_height="wrap_content"
         android:padding="20dp">
 
-        <!-- Insignia de Rol Provisional -->
+        <!-- Insignia de Aviso de Simulación -->
         <LinearLayout
             android:id="@+id/badgeController"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_status_badge"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="14dp"
-            android:paddingVertical="6dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:contentDescription="@null"
                 android:src="@drawable/ic_status_indicator" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="sans-serif-medium"
-                android:letterSpacing="0.05"
-                android:text="@string/provisional_badge"
+                android:text="@string/sim_sensor_badge"
                 android:textColor="@color/scada_status_ok"
-                android:textSize="12sp" />
+                android:textSize="11sp" />
         </LinearLayout>
 
-        <!-- Tarjeta de Información de Controlador -->
+        <!-- Tarjeta del Simulador de Sensor -->
         <LinearLayout
-            android:id="@+id/cardControllerInfo"
+            android:id="@+id/cardSensorControls"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -56,42 +55,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/badgeController">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:fontFamily="sans-serif-black"
+                android:text="@string/controller_title"
+                android:textColor="@color/scada_text_primary"
+                android:textSize="18sp" />
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_cpu_simulator" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-black"
-                        android:text="@string/controller_title"
-                        android:textColor="@color/scada_text_primary"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/controller_subtitle"
-                        android:textColor="@color/scada_cyan_secondary"
-                        android:textSize="13sp" />
-                </LinearLayout>
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/controller_subtitle"
+                android:textColor="@color/scada_cyan_secondary"
+                android:textSize="13sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -99,16 +77,164 @@
                 android:layout_marginVertical="16dp"
                 android:background="@color/scada_surface_stroke" />
 
-            <TextView
+            <!-- Interruptor de Simulación -->
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchSimulation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lineSpacingExtra="4dp"
-                android:text="@string/controller_info"
+                android:checked="true"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/label_sim_switch"
+                android:textColor="@color/scada_text_primary"
+                android:textSize="13sp" />
+
+            <!-- Ajuste de Distancia con Slider -->
+            <TextView
+                android:id="@+id/tvLabelDistanceSlider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/label_sim_distance"
                 android:textColor="@color/scada_text_secondary"
                 android:textSize="13sp" />
+
+            <SeekBar
+                android:id="@+id/sbDistance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:max="200"
+                android:progress="110"
+                android:progressTint="@color/scada_cyan_primary"
+                android:thumbTint="@color/scada_cyan_secondary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilDistanceInput"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Distancia (cm)"
+                    app:boxStrokeColor="@color/scada_cyan_primary"
+                    app:hintTextColor="@color/scada_cyan_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDistanceInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/scada_text_primary"
+                        android:textSize="13sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tvSimLevelPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="sans-serif-bold"
+                    android:textColor="@color/scada_text_primary"
+                    android:textSize="14sp"
+                    tools:text="Nivel: 50.0 % (110.0 cm)" />
+            </LinearLayout>
         </LinearLayout>
 
-        <!-- Botones de Gestión -->
+        <!-- Tarjeta de Gestión de Órdenes del Monitor -->
+        <LinearLayout
+            android:id="@+id/cardOrderManagement"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_scada_panel"
+            android:orientation="vertical"
+            android:padding="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardSensorControls">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/label_pending_requests_title"
+                android:textColor="@color/scada_text_primary"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvConfirmedPumpState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/scada_text_secondary"
+                android:textSize="13sp"
+                tools:text="Estado Confirmado del Actuador: BOMBA APAGADA" />
+
+            <!-- Aviso de Orden Pendiente -->
+            <TextView
+                android:id="@+id/tvPendingOrderNotice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="sans-serif-bold"
+                android:textColor="@color/scada_accent_amber"
+                android:textSize="13sp"
+                tools:text="No hay solicitudes pendientes del Monitor." />
+
+            <TextView
+                android:id="@+id/tvLastOrderResultController"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/scada_text_muted"
+                android:textSize="11sp"
+                tools:text="Resultado reciente: Sin órdenes procesadas" />
+
+            <!-- Botones Aceptar / Rechazar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAcceptOrder"
+                    style="@style/Widget.Material3.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:text="@string/btn_accept_order"
+                    android:textColor="@color/scada_bg_dark"
+                    android:textSize="13sp"
+                    app:backgroundTint="@color/scada_status_ok"
+                    app:cornerRadius="8dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRejectOrder"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:text="@string/btn_reject_order"
+                    android:textColor="@color/scada_accent_amber"
+                    android:textSize="13sp"
+                    app:cornerRadius="8dp"
+                    app:strokeColor="@color/scada_accent_amber" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Botones de Navegación Inferior -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnChangeRoleController"
             style="@style/Widget.Material3.Button"
@@ -122,7 +248,7 @@
             app:cornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardControllerInfo" />
+            app:layout_constraintTop_toBottomOf="@id/cardOrderManagement" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogoutController"
